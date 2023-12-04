@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AvianEnthusiasts"
 include(":app")
+include(":lib")
