@@ -23,13 +23,15 @@
                 android:id="@+id/speciesTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text=""
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/commentTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:text=""
+                android:padding="8dp" />
         </LinearLayout>
 
         <ImageView

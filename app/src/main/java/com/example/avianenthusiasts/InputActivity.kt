@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.avianenthusiasts.databinding.ActivityInputBinding
@@ -29,6 +30,13 @@ class InputActivity : AppCompatActivity() {
 
         position = intent.getStringExtra("position").toString()
 
+        if (!intent.hasExtra("position")) {
+            binding.buttonAddImage.visibility = View.VISIBLE
+        } else {
+            binding.buttonAddImage.visibility = View.GONE
+            binding.buttonAdd.text = getString(R.string.edit)
+        }
+
         if (intent.hasExtra("species")) {
             binding.editTextSpecies.setText(intent.getStringExtra("species"))
         }
@@ -47,6 +55,7 @@ class InputActivity : AppCompatActivity() {
                 val data = Intent().apply {
                     putExtra("species", speciesString)
                     putExtra("comment", commentString)
+                    putExtra("position", position)
                     selectedImageUri?.let {
                         putExtra("imageUri", it.toString())
                     }

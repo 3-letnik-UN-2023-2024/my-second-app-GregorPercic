@@ -10,8 +10,10 @@
         android:id="@+id/buttonInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New bird"
+        android:layout_marginTop="56dp"
+        android:text="@string/new_bird"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,17 +21,21 @@
         android:id="@+id/buttonList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View birds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="36dp"
+        android:text="@string/view_birds"
+        app:layout_constraintEnd_toEndOf="@+id/buttonInput"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="@+id/buttonInput"
         app:layout_constraintTop_toBottomOf="@+id/buttonInput" />
 
     <Button
         android:id="@+id/buttonExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="36dp"
+        android:text="@string/exit"
+        app:layout_constraintEnd_toEndOf="@+id/buttonList"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/buttonList"
         app:layout_constraintTop_toBottomOf="@+id/buttonList" />
 </androidx.constraintlayout.widget.ConstraintLayout>

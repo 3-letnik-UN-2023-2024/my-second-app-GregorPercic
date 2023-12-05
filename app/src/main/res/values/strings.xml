@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">AvianEnthusiasts</string>
+    <string name="app_name">Avian Enthusiasts</string>
+    <string name="species">Species</string>
+    <string name="comment">Comment</string>
+    <string name="edit">Edit</string>
+    <string name="add_image">Add image</string>
+    <string name="add">Add</string>
+    <string name="new_bird">New bird</string>
+    <string name="view_birds">View birds</string>
+    <string name="exit">Exit</string>
 </resources>
