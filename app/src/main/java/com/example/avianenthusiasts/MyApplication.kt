@@ -31,13 +31,13 @@ class MyApplication : Application() {
         }
     }
 
-    fun saveSubjectsToFile() {
+    fun saveToFile() {
         val jsonData = gson.toJson(birdList)
         val file = File(filesDir, "birds.json")
         file.writeText(jsonData)
     }
 
-    fun loadSubjectsFromFile() {
+    fun loadFromFile() {
         val file = File(filesDir, "birds.json")
         if (file.exists()) {
             val jsonData = file.readText()
@@ -48,28 +48,28 @@ class MyApplication : Application() {
         }
     }
 
-    fun addSubject(bird: Bird) {
+    fun addItem(bird: Bird) {
         birdList.add(bird)
-        saveSubjectsToFile()
+        saveToFile()
     }
 
-    fun updateSubject(birdUUID: UUID, species: String, comment: String) {
+    fun updateItem(birdUUID: UUID, species: String, comment: String) {
         val subjectIndex = birdList.indexOfFirst { it.uuid == birdUUID }
         if (subjectIndex != -1) {
             birdList[subjectIndex].species = species
             birdList[subjectIndex].comment = comment
-            saveSubjectsToFile()
+            saveToFile()
         }
     }
 
-    fun deleteSubject(birdUUID: UUID) {
+    fun deleteItem(birdUUID: UUID) {
         birdList.removeAll { it.uuid == birdUUID }
-        saveSubjectsToFile()
+        saveToFile()
     }
 
     fun deleteAll() {
         birdList.clear()
-        saveSubjectsToFile()
+        saveToFile()
     }
 
     fun generateData() {
@@ -82,7 +82,7 @@ class MyApplication : Application() {
                 sentence += faker.lorem.words() + " "
             }
             val comment = sentence
-            addSubject(Bird(species, comment))
+            addItem(Bird(species, comment))
         }
     }
 }

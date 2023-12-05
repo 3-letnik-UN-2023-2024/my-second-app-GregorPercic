@@ -31,6 +31,14 @@
                 android:layout_height="wrap_content"
                 android:text="" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/birdImageView"
+            android:layout_width="103dp"
+            android:layout_height="166dp"
+            android:layout_marginStart="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/crow" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

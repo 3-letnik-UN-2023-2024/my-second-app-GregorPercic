@@ -1,11 +1,18 @@
 package com.example.avianenthusiasts
 
 import android.app.AlertDialog
+import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.avianenthusiasts.databinding.ItemBirdBinding
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
     RecyclerView.Adapter<BirdAdapter.ViewHolder>() {
@@ -14,12 +21,12 @@ class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
     class ViewHolder(val binding: ItemBirdBinding) : RecyclerView.ViewHolder(binding.root) {
         val speciesTextView: TextView = binding.speciesTextView
         val commentTextView: TextView = binding.commentTextView
+        val birdImageView: ImageView = binding.birdImageView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemBirdBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_bird, parent, false)
+        // !!!!!!!!!!!!!!!!! removed something
         return ViewHolder(binding)
     }
 
@@ -27,6 +34,35 @@ class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
         val bird = birds[position]
         holder.speciesTextView.text = bird.species
         holder.commentTextView.text = bird.comment
+
+        if (bird.imageUri != "") {
+            println("uriOOOOO!!!!!!!!!!: ${bird.imageUri}")
+
+            Picasso.get()
+                .load(Uri.parse(bird.imageUri))
+                .error(R.drawable.crow)
+                .into(holder.birdImageView, object : Callback {
+                    override fun onSuccess() {
+                        // Image successfully loaded
+                    }
+
+                    override fun onError(e: Exception) {
+                        // Error loading the image
+                        println("Picasso error: $e")
+                    }
+                })
+
+/*
+            Glide.with(holder.itemView.getContext())
+                .load(Uri.parse(bird.imageUri))
+                .error(R.drawable.crow)
+                .into(holder.birdImageView);
+
+ */
+        } else {
+            holder.birdImageView.setImageResource(R.drawable.crow)
+            //holder.birdImageView.visibility = View.GONE
+        }
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
@@ -45,7 +81,7 @@ class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
                     birds.removeAt(position)
                     notifyItemRemoved(position)
                     notifyItemRangeChanged(position, birds.size - 1)
-                    app.deleteSubject(birdToRemove.uuid)
+                    app.deleteItem(birdToRemove.uuid)
                 }
                 .setNegativeButton("No", null)
                 .show()

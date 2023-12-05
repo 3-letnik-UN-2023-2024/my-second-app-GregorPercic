@@ -23,8 +23,8 @@ class ListActivity : AppCompatActivity() {
                 val position = data?.getStringExtra("position")!!.toInt()
 
                 val bird = app.birdList[position]
-                app.updateSubject(bird.uuid, species, comment)
-                app.loadSubjectsFromFile()
+                app.updateItem(bird.uuid, species, comment)
+                app.loadFromFile()
 
                 //birdAdapter.birds = app.birdList
                 birdAdapter.notifyItemChanged(position)
@@ -41,7 +41,7 @@ class ListActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         app = application as MyApplication
-        app.loadSubjectsFromFile()
+        app.loadFromFile()
         birdAdapter = BirdAdapter(app.birdList, app)
         binding.recyclerView.adapter = birdAdapter
     }

@@ -2,6 +2,7 @@ package com.example.avianenthusiasts
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -16,11 +17,13 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 val newBird = Bird(
-                    data?.getStringExtra("species")!!,
-                    data?.getStringExtra("comment")!!,
+                    species = data?.getStringExtra("species")!!,
+                    comment = data.getStringExtra("comment")!!,
+                    imageUri = data.getStringExtra("imageUri") ?: ""
                 )
-                app.loadSubjectsFromFile()
-                app.addSubject(newBird)
+
+                app.loadFromFile()
+                app.addItem(newBird)
             }
         }
     override fun onCreate(savedInstanceState: Bundle?) {
