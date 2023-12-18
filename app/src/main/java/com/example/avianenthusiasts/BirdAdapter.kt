@@ -21,6 +21,8 @@ class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
     class ViewHolder(val binding: ItemBirdBinding) : RecyclerView.ViewHolder(binding.root) {
         val speciesTextView: TextView = binding.speciesTextView
         val commentTextView: TextView = binding.commentTextView
+        val latitudeTextView: TextView = binding.latitudeTextView
+        val longitudeTextView: TextView = binding.longitudeTextView
         val birdImageView: ImageView = binding.birdImageView
     }
 
@@ -34,6 +36,8 @@ class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
         val bird = birds[position]
         holder.speciesTextView.text = bird.species
         holder.commentTextView.text = bird.comment
+        holder.latitudeTextView.text = bird.latitude.toString()
+        holder.longitudeTextView.text = bird.longitude.toString()
 
         if (bird.imageUri != "") {
             println("uriOOOOO!!!!!!!!!!: ${bird.imageUri}")

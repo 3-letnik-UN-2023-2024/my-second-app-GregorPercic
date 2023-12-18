@@ -8,6 +8,7 @@ import io.github.serpro69.kfaker.Faker
 import java.io.File
 import java.util.Locale
 import java.util.UUID
+import kotlin.random.Random
 
 class MyApplication : Application() {
     val birdList = mutableListOf<Bird>()
@@ -82,7 +83,9 @@ class MyApplication : Application() {
                 sentence += faker.lorem.words() + " "
             }
             val comment = sentence
-            addItem(Bird(species, comment))
+            val randomLatitude = Random.nextDouble(-90.0, 90.0)
+            val randomLongitude = Random.nextDouble(-180.0, 180.0)
+            addItem(Bird(species = species, comment = comment, latitude = randomLatitude, longitude = randomLongitude))
         }
     }
 }
