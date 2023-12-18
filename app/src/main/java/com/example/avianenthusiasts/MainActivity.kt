@@ -15,12 +15,21 @@ import android.Manifest
 import android.content.Context
 import android.location.LocationListener
 import android.location.LocationManager
+import android.preference.PreferenceManager
 
 import com.example.avianenthusiasts.databinding.ActivityMainBinding
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 
 class MainActivity : AppCompatActivity() {
     lateinit var app: MyApplication
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var map: MapView
+
     var getBird =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -40,6 +49,8 @@ class MainActivity : AppCompatActivity() {
 
                 app.loadFromFile()
                 app.addItem(newBird)
+
+                addMarker(newBird)
             }
         }
 
@@ -125,5 +136,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         getCurrentLocation()
+
+        map = binding.map
+        map.setTileSource(TileSourceFactory.MAPNIK)
+
+        val mapController = map.controller
+        mapController.setZoom(9.5)
+        val startPoint = GeoPoint(48.8583, 2.2944)
+        mapController.setCenter(startPoint)
+
+        map.setMultiTouchControls(true)
+
+        app.loadFromFile()
+        for (bird in app.birdList) {
+            addMarker(bird)
+        }
+    }
+
+    private fun addMarker(bird: Bird) {
+        val point = GeoPoint(bird.latitude, bird.longitude)
+        val marker = Marker(map)
+        marker.position = point
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        map.overlays.add(marker)
     }
 }
