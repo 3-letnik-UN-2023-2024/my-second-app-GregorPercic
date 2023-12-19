@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.avianenthusiasts.databinding.ItemBirdBinding
+import com.facebook.share.model.ShareLinkContent
+import com.facebook.share.widget.ShareButton
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
@@ -91,6 +93,12 @@ class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
                 .show()
             true
         }
+
+        val shareButton = holder.itemView.findViewById<ShareButton>(R.id.fb_share_button)
+        val content = ShareLinkContent.Builder()
+            .setContentUrl(Uri.parse("https://example.com/bird_detail_page"))
+            .build()
+        shareButton.shareContent = content
     }
 
     override fun getItemCount() = birds.size

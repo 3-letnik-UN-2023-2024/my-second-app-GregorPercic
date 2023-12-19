@@ -2,11 +2,15 @@ package com.example.avianenthusiasts
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.avianenthusiasts.databinding.ActivityListBinding
+import com.facebook.FacebookSdk
+import com.facebook.share.model.ShareLinkContent
+import com.facebook.share.widget.ShareButton
 
 class ListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListBinding

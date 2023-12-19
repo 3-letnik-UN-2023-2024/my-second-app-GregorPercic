@@ -19,13 +19,13 @@ import android.content.Context
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
-import android.preference.PreferenceManager
+
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 import com.example.avianenthusiasts.databinding.ActivityMainBinding
 import org.osmdroid.config.Configuration
-import org.osmdroid.library.BuildConfig
+
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
