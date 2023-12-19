@@ -46,7 +46,7 @@ class ListActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         app = application as MyApplication
         app.loadFromFile()
-        birdAdapter = BirdAdapter(app.birdList, app)
+        birdAdapter = BirdAdapter(this, app.birdList, app)
         binding.recyclerView.adapter = birdAdapter
     }
 

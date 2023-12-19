@@ -13,10 +13,11 @@ import com.bumptech.glide.Glide
 import com.example.avianenthusiasts.databinding.ItemBirdBinding
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.ShareButton
+import com.facebook.share.widget.ShareDialog
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
-class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
+class BirdAdapter(val activity: ListActivity, var birds: MutableList<Bird>, val app: MyApplication) :
     RecyclerView.Adapter<BirdAdapter.ViewHolder>() {
     lateinit var binding: ItemBirdBinding
 
@@ -94,9 +95,12 @@ class BirdAdapter(var birds: MutableList<Bird>, val app: MyApplication) :
             true
         }
 
+        val birdDetails = "Species: ${bird.species}\nComment: ${bird.comment}\nLatitude: ${bird.latitude}\nLongitude: ${bird.longitude}"
+
         val shareButton = holder.itemView.findViewById<ShareButton>(R.id.fb_share_button)
         val content = ShareLinkContent.Builder()
-            .setContentUrl(Uri.parse("https://example.com/bird_detail_page"))
+            .setContentUrl(Uri.parse("https://en.wikipedia.org/wiki/${bird.species}"))
+            .setQuote(birdDetails)
             .build()
         shareButton.shareContent = content
     }
